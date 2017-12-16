@@ -18,6 +18,9 @@ class LSTM_1():
         self.model.add(Dense(2))
         self.model.compile(optimizer=optimizer,loss='mse')
         
+        self.test_data = []
+        self.predictions = []
+        
     def create_dataset(self, dataset, look_back=1):
         dataX, dataY = [], []
         for i in range(len(dataset)-look_back-1):
@@ -63,6 +66,30 @@ class LSTM_1():
             print('Train score: ', train_score)
             cv_score = self.model.evaluate(cvX, cvY, batch_size = self.batch_size, verbose=0)
             print('Cross Validation score: ', cv_score)
+        self.model.save_weights('google_model_weights')
+            
+    def get_stock_average_daily_deviation(self, data):
+            sum = 0
+            sum_mean = 0
+            num_points = len(data)
+            for index in range(num_points):
+                sum += ((data[index][3]-data[index][2])/((data[index][0]+data[index][1])/2))*100
+            return(sum/num_points)
+            
+    def test(self):
+        test_data = self.cleaner.get_clean_data(0,test=True)
+        print('Stock Average Daily Deviation: {}'.format(self.get_stock_average_daily_deviation(test_data)))
+        data = []
+        for index in range(len(test_data)):
+            data.append(test_data[index][0])
+            data.append(test_data[index][1])
+        data = np.array(data).reshape([len(data),1])
+        X, trainY = self.create_dataset(data, look_back=self.sequence_length)
+        X = X[:-self.sequence_length,:]
+        X = np.reshape(X, (X.shape[0], X.shape[1], 1))
+        self.test_data = X
+        self.predictions = self.model.predict(X,batch_size=self.batch_size)
+        return self.predictions
         
 if __name__ == '__main__':
     model = LSTM_1(1,30,2)

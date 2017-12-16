@@ -25,6 +25,7 @@ class DataCleaner():
 
         # ### Isolate Desired Stock
         df = df[df.symbol == 'NFLX']
+        #df = df[df.symbol == 'GOOGL']
         del df['volume']
         del df['symbol']
         del df['date']

@@ -11,7 +11,7 @@ class Baseline():
         self.y_train = []
         self.x_pred = []
         self.y_pred = []
-        self.purchase_cost = 0.00
+        self.purchase_cost = 0.0075
         self.sell_cost = 0.0075
         self.investment = self.assets*(1-self.purchase_cost)
         self.minimum_sell_value = self.investment/(1-self.sell_cost)
@@ -55,12 +55,13 @@ class Baseline():
     
         if (min_train <= mean - 2*std_dev) and (self.y_train[-1] <= mean-1.8*std_dev) and (self.y_train[-1] > min_train) and (max_pred > minimum_sell):
             return 0
-        elif (min_train <= mean - 2*std_dev) and (self.y_train[-1] <= mean-1.8*std_dev) and (self.y_train[-1] > min_train):
+        elif (max_pred > minimum_sell):
             return 1
-        elif (max_train >= mean + 2*std_dev) and (self.y_train[-1] >= mean+1.8*std_dev) and (self.y_train[-1] <= max_train) and (max_pred > minimum_sell):
-            return 3
-        elif self.y_train[-1] > minimum_sell:
-            return 4
+        elif (self.y_train[-1] >= minimum_sell) and (max_pred < self.y_train[-1]):
+            if (max_train >= mean + 2*std_dev) and (self.y_train[-1] >= mean+1.8*std_dev) and (self.y_train[-1] <= max_train):
+                return 4
+            else:
+                return 3
         else:
             return 2
             
@@ -94,7 +95,7 @@ def get_average_profit():
                 profit = (base.y_train[-1] - base.purchase_value)*base.assets
                 profits.append(profit)
                 print("sold for ${} profit".format(profit))
-            elif (not invested) and (base.classify() == 0 ):
+            elif (not invested) and ((base.classify() == 0) or (base.classify() == 1)):
                 base.purchase_value = base.y_train[-1]
                 invested = True
                 print("Invested")

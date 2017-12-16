@@ -1,0 +1,46 @@
+Number of LSTM cells: 60
+Sequence length: 30
+Epochs per fold: 5
+Dropout: 0.3
+Activation function: relu
+Optimizer: adam
+
+Stock Average Daily Deviation: 3.5077272021289736
+Invested $1000
+sold for $[ 21.06206052] profit
+Invested $[ 1021.06206052]
+sold for $[ 28.62366272] profit
+Invested $[ 1049.68572324]
+sold for $[ 20.24880139] profit
+Invested $[ 1069.93452463]
+sold for $[ 42.23432702] profit
+Invested $[ 1112.16885165]
+sold for $[ 22.12460679] profit
+Invested $[ 1134.29345844]
+sold for $[ 26.38945554] profit
+Invested $[ 1160.68291398]
+sold for $[ 3.94921769] profit
+Invested $[ 1164.63213167]
+sold for $[ 18.94802895] profit
+Invested $[ 1183.58016063]
+sold for $[ 30.26443362] profit
+Invested $[ 1213.84459425]
+sold for $[ 15.43841244] profit
+Invested $[ 1229.28300669]
+sold for $[ 18.99395125] profit
+Invested $[ 1248.27695794]
+sold for $[ 18.02674793] profit
+Invested $[ 1266.30370587]
+sold for $[ 18.54565656] profit
+Invested $[ 1284.84936243]
+sold for $[ 6.4576232] profit
+Invested $[ 1291.30698563]
+sold for $[ 9.98962717] profit
+Invested $[ 1301.2966128]
+sold for $[ 20.32385656] profit
+Invested $[ 1321.62046937]
+sold for $[ 29.67972289] profit
+Invested $[ 1351.30019226]
+sold for $[ 7.40229357] profit
+Profits: [array([ 21.06206052]), array([ 28.62366272]), array([ 20.24880139]), array([ 42.23432702]), array([ 22.12460679]), array([ 26.38945554]), array([ 3.94921769]), array([ 18.94802895]), array([ 30.26443362]), array([ 15.43841244]), array([ 18.99395125]), array([ 18.02674793]), array([ 18.54565656]), array([ 6.4576232]), array([ 9.98962717]), array([ 20.32385656]), array([ 29.67972289]), array([ 7.40229357])]
+Total profits = $[ 358.70248583]
